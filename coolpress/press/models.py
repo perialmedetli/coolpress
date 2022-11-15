@@ -6,7 +6,7 @@ class CoolUser(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     gravatar_link = models.URLField(null=True, blank=True)
     github_profile = models.URLField(null=True, blank=True)
-    gh_repositories = models.IntegerField(null=True)
+    gh_repositories = models.IntegerField(null=True, blank=True)
 
     def __str__(self):
         return f'{self.user.username}'
@@ -18,9 +18,8 @@ class Category(models.Model):
 
     label = models.CharField(max_length=200)
     slug = models.SlugField()
+    #
 
-    def __str__(self):
-        return f'{self.label} ({self.id})'
 
 
 class PostStatus:
@@ -42,6 +41,7 @@ class Post(models.Model):
 
     creation_date = models.DateTimeField(auto_now_add=True)
     last_update = models.DateTimeField(auto_now=True)
+
 
     def __str__(self):
         return self.title
